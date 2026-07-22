@@ -13,8 +13,8 @@
       h1 { margin: 0; font-size: clamp(42px, 14vw, 76px); font-weight: 500; line-height: 1.05; letter-spacing: 0; }
       .rule { width: 72px; height: 1px; margin: 34px auto; background: var(--line); }
       .line { margin: 0 auto; max-width: 14em; font-size: clamp(24px, 7vw, 34px); font-weight: 400; line-height: 1.55; letter-spacing: 0; }
-      .hint { margin: 36px 0 18px; color: var(--muted); font-size: 15px; line-height: 1.7; }
-      audio { width: min(100%, 420px); margin-top: 10px; accent-color: var(--accent); }
+      .hint { margin: 30px auto 18px; max-width: 18em; color: var(--muted); font-size: 15px; line-height: 1.7; }
+      video { width: min(100%, 420px); max-height: 54svh; margin-top: 10px; border-radius: 8px; background: #000; }
       .footer { margin-top: 42px; color: var(--muted); font-size: 12px; }
     </style>
   </head>
@@ -23,12 +23,12 @@
       <p class="chapter">Chapter 05</p>
       <h1>成长</h1>
       <div class="rule" aria-hidden="true"></div>
-      <p class="line">我们一起毕业，<br />一起看世界，也一起成为更好的自己。</p>
-      <p class="hint">把手机音量调大一点，听听这一段回忆。</p>
-      <audio controls preload="metadata">
-        <source src="chapter5.mp3" type="audio/mpeg" />
-        你的浏览器暂时无法播放这段录音。
-      </audio>
+      <p class="line">同一座铁塔，<br />因为身边的人，变得闪闪发光。</p>
+      <p class="hint">十八岁看见巴黎，二十八岁和你一起等到它亮起来。</p>
+      <video controls playsinline preload="metadata">
+        <source src="chapter5.mp4" type="video/mp4" />
+        你的浏览器暂时无法播放这段视频。
+      </video>
       <p class="footer">Keke &amp; Dandan</p>
     </main>
   </body>
