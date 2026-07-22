@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1280" role="img" aria-labelledby="title desc">
+  <title id="title">Route from Montreal to the border</title>
+  <desc id="desc">A stylized map showing Dandan traveling from Montreal to the U.S. border to pick up Keke.</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbfaf4"/>
+      <stop offset="1" stop-color="#f0eadf"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#bfe7e0"/>
+      <stop offset="1" stop-color="#8fcfd6"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#6c5643" flood-opacity=".18"/>
+    </filter>
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+
+  <rect width="900" height="1280" rx="42" fill="url(#paper)"/>
+  <path d="M45 92 C180 16 286 42 395 78 C520 120 666 92 840 24 L890 96 L860 1222 C710 1160 560 1138 408 1198 C274 1250 150 1236 24 1168 Z" fill="#d8ecd2" opacity=".72"/>
+  <path d="M112 222 C210 150 330 165 418 214 C535 278 662 245 806 176 L838 242 C678 330 525 340 386 266 C286 212 198 216 92 284 Z" fill="#e9e1d2" opacity=".82"/>
+  <path d="M510 0 C476 130 516 244 482 364 C456 454 390 520 418 628 C452 760 594 832 560 970 C536 1060 464 1134 472 1280 L620 1280 C622 1156 660 1074 682 972 C714 824 594 746 570 622 C550 520 630 430 640 324 C654 184 620 82 668 0 Z" fill="url(#water)" opacity=".88"/>
+  <path d="M0 925 C134 916 250 930 394 914 C548 898 678 888 900 900" fill="none" stroke="#9b8c79" stroke-width="4" stroke-linecap="round" opacity=".62"/>
+  <text x="46" y="905" fill="#7f6f5d" font-family="Georgia, 'Times New Roman', serif" font-size="24" letter-spacing=".08em">CANADA</text>
+  <text x="46" y="965" fill="#7f6f5d" font-family="Georgia, 'Times New Roman', serif" font-size="24" letter-spacing=".08em">UNITED STATES</text>
+
+  <g fill="none" stroke="#c8bca9" stroke-width="3" stroke-linecap="round" opacity=".7">
+    <path d="M90 158 C210 214 266 278 348 352 S534 472 716 536"/>
+    <path d="M72 402 C200 388 316 424 420 496 S622 574 824 560"/>
+    <path d="M146 708 C246 640 342 632 448 650 S652 698 790 644"/>
+    <path d="M250 80 C280 218 290 342 266 466 S252 704 334 834"/>
+    <path d="M744 118 C710 250 724 396 700 510 S650 728 694 860"/>
+  </g>
+
+  <g fill="#847566" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-weight="500">
+    <text x="238" y="375" font-size="42">Montreal</text>
+    <text x="430" y="614" font-size="30">Saint-Jean-sur-Richelieu</text>
+    <text x="470" y="850" font-size="28">Lacolle</text>
+    <text x="654" y="990" font-size="28">Border</text>
+  </g>
+
+  <path d="M360 412 C394 458 434 486 484 512 C548 546 594 586 594 646 C594 696 674 700 674 756 C674 800 736 820 736 882 C736 934 762 966 792 1012" fill="none" stroke="#3e2a90" stroke-width="42" stroke-linecap="round" stroke-linejoin="round" opacity=".14" filter="url(#soft)"/>
+  <path d="M360 412 C394 458 434 486 484 512 C548 546 594 586 594 646 C594 696 674 700 674 756 C674 800 736 820 736 882 C736 934 762 966 792 1012" fill="none" stroke="#322a8e" stroke-width="23" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M360 412 C394 458 434 486 484 512 C548 546 594 586 594 646 C594 696 674 700 674 756 C674 800 736 820 736 882 C736 934 762 966 792 1012" fill="none" stroke="#7b5cff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g filter="url(#shadow)">
+    <circle cx="338" cy="394" r="54" fill="#fff"/>
+    <circle cx="338" cy="394" r="36" fill="#26202a"/>
+    <circle cx="338" cy="394" r="13" fill="#fbfaf4"/>
+    <path d="M338 362 C320 390 316 414 338 442 C360 414 356 390 338 362Z" fill="#26202a"/>
+  </g>
+  <g filter="url(#shadow)">
+    <circle cx="792" cy="1012" r="54" fill="#fff"/>
+    <circle cx="792" cy="1012" r="36" fill="#d84a3a"/>
+    <circle cx="792" cy="1012" r="13" fill="#fff7f1"/>
+    <path d="M792 980 C774 1008 770 1032 792 1060 C814 1032 810 1008 792 980Z" fill="#d84a3a"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="84" y="72" width="732" height="138" rx="26" fill="#fffaf2"/>
+    <text x="128" y="128" fill="#1d1d1f" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="34" font-weight="600">Montreal -> Border</text>
+    <text x="128" y="174" fill="#6e6256" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="24">83 km · 1 hr 13 min · she came for me</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="96" y="1068" width="708" height="112" rx="28" fill="#fffaf2"/>
+    <text x="132" y="1126" fill="#1d1d1f" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="28" font-weight="600">那一天，我知道有人会为我赶来。</text>
+    <text x="132" y="1164" fill="#7b6f64" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="20">Chapter 04 · 守护</text>
+  </g>
+</svg>
