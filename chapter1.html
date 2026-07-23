@@ -68,6 +68,23 @@
         letter-spacing: 0;
       }
 
+      .photo-pair {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        width: min(100%, 520px);
+        margin: 32px auto 0;
+      }
+
+      .photo-pair img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 14px 34px rgba(90, 74, 56, .14);
+      }
+
       .hint {
         margin: 36px 0 18px;
         color: var(--muted);
@@ -94,6 +111,10 @@
       <h1>相遇</h1>
       <div class="rule" aria-hidden="true"></div>
       <p class="line">从那一杆开始，<br />两条平行的轨迹有了交点。</p>
+      <div class="photo-pair" aria-label="蒙特利尔植物园郁金香花丛中的两张照片">
+        <img src="chapter1-dandan-tulips.jpg" alt="丹丹在蒙特利尔植物园郁金香花丛中" />
+        <img src="chapter1-keke-tulips.jpg" alt="可可在蒙特利尔植物园郁金香花丛中" />
+      </div>
       <p class="hint">把手机音量调大一点，听听这一段回忆。</p>
       <audio controls preload="metadata">
         <source src="chapter1.mp3" type="audio/mpeg" />
