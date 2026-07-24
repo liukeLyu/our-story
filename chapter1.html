@@ -218,12 +218,8 @@
         opacity: 0;
       }
 
-      .golf-intro.is-playing #static-ball {
-        opacity: 0;
-      }
-
       .golf-intro.is-playing #ball {
-        opacity: 1;
+        opacity: 0;
       }
 
       @keyframes swing {
@@ -283,6 +279,21 @@
                 <stop offset=".48" stop-color="#f5f5f0" />
                 <stop offset="1" stop-color="#d4d5ce" />
               </radialGradient>
+              <linearGradient id="shaft-grad" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0" stop-color="#565b5c" />
+                <stop offset=".48" stop-color="#e6e7e4" />
+                <stop offset="1" stop-color="#767a78" />
+              </linearGradient>
+              <linearGradient id="head-grad" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#f3f1e9" />
+                <stop offset=".42" stop-color="#8d8e89" />
+                <stop offset="1" stop-color="#2d2f2d" />
+              </linearGradient>
+              <linearGradient id="grip-grad" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0" stop-color="#161817" />
+                <stop offset=".55" stop-color="#454946" />
+                <stop offset="1" stop-color="#151716" />
+              </linearGradient>
               <path id="ball-path" d="M78 351 C152 346 185 315 250 278 C335 230 398 198 486 224 C573 254 618 304 684 306" />
             </defs>
             <rect width="760" height="460" fill="url(#sky-grad)" />
@@ -295,9 +306,13 @@
               <path d="M696 218 L756 232 L696 252 Z" fill="#c7654d" />
             </g>
             <g id="club">
-              <line x1="92" y1="336" x2="154" y2="185" stroke="#626462" stroke-width="6" stroke-linecap="round" />
-              <line x1="94" y1="336" x2="156" y2="185" stroke="#d6d6d1" stroke-width="2" stroke-linecap="round" opacity=".72" />
-              <path d="M50 345 C64 331 84 326 102 330 C110 332 113 344 106 350 C90 361 66 363 48 357 C42 355 43 350 50 345 Z" fill="#242424" />
+              <line x1="92" y1="336" x2="150" y2="194" stroke="url(#shaft-grad)" stroke-width="5" stroke-linecap="round" />
+              <line x1="95" y1="333" x2="152" y2="195" stroke="#ffffff" stroke-width="1.3" stroke-linecap="round" opacity=".62" />
+              <line x1="150" y1="194" x2="164" y2="161" stroke="url(#grip-grad)" stroke-width="9" stroke-linecap="round" />
+              <line x1="155" y1="190" x2="168" y2="160" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity=".24" />
+              <path d="M46 348 C60 335 84 329 105 333 C114 335 118 344 111 351 C98 364 67 368 47 360 C39 357 39 353 46 348 Z" fill="url(#head-grad)" />
+              <path d="M58 349 C73 341 92 338 106 340" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity=".58" />
+              <path d="M53 361 C72 365 96 361 108 351" fill="none" stroke="#151716" stroke-width="2" stroke-linecap="round" opacity=".42" />
             </g>
             <g id="static-ball" transform="translate(78 351)">
               <circle r="12" fill="url(#ball-grad)" />
@@ -305,12 +320,8 @@
               <circle cx="4" cy="2" r="1.2" fill="#c8cac4" opacity=".55" />
               <circle cx="0" cy="6" r="1" fill="#c8cac4" opacity=".5" />
             </g>
-            <g id="ball">
-              <animateMotion id="ball-roll" begin="indefinite" dur="2.85s" fill="freeze" calcMode="spline" keyTimes="0;.28;.63;1" keySplines=".2 .65 .25 1;.2 .55 .28 1;.26 .02 .2 1">
-                <mpath href="#ball-path" />
-              </animateMotion>
+            <g id="ball" transform="translate(78 351)">
               <g id="ball-shape">
-                <animateTransform id="ball-drop" attributeName="transform" type="scale" begin="indefinite" dur="2.85s" values="1;1;.82;.18" keyTimes="0;.72;.9;1" fill="freeze" />
                 <circle r="12" fill="url(#ball-grad)" />
                 <circle cx="-4" cy="-3" r="1.3" fill="#c8cac4" opacity=".65" />
                 <circle cx="4" cy="2" r="1.2" fill="#c8cac4" opacity=".55" />
@@ -340,12 +351,38 @@
     </main>
     <script>
       const intro = document.querySelector(".golf-intro");
+      const ballPath = document.getElementById("ball-path");
+      const ball = document.getElementById("ball");
+      const ballShape = document.getElementById("ball-shape");
+      const pathLength = ballPath.getTotalLength();
+      const easeInOut = (t) => t * t * (3 - 2 * t);
 
       intro.addEventListener("click", () => {
         if (intro.classList.contains("is-playing")) return;
         intro.classList.add("is-playing");
-        document.getElementById("ball-roll").beginElement();
-        document.getElementById("ball-drop").beginElement();
+
+        window.setTimeout(() => {
+          const start = performance.now();
+          const duration = 2850;
+
+          function roll(now) {
+            const elapsed = Math.min((now - start) / duration, 1);
+            const progress = easeInOut(elapsed);
+            const point = ballPath.getPointAtLength(pathLength * progress);
+            const sink = Math.max((elapsed - 0.88) / 0.12, 0);
+            const scale = 1 - sink * 0.82;
+            const opacity = 1 - sink;
+
+            document.getElementById("static-ball").style.opacity = "0";
+            ball.setAttribute("transform", `translate(${point.x} ${point.y + sink * 10})`);
+            ball.style.opacity = opacity.toFixed(3);
+            ballShape.setAttribute("transform", `rotate(${progress * 980}) scale(${scale})`);
+
+            if (elapsed < 1) requestAnimationFrame(roll);
+          }
+
+          requestAnimationFrame(roll);
+        }, 560);
 
         window.setTimeout(() => {
           document.body.classList.add("story-open");
