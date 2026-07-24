@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Chapter 01 | 相遇</title>
+    <link rel="icon" href="data:," />
     <style>
       :root {
         color-scheme: light;
@@ -12,6 +13,7 @@
         --line: #d8d2c8;
         --paper: #fbfaf7;
         --accent: #8b5e3c;
+        --green: #5f8f59;
       }
 
       * {
@@ -21,8 +23,6 @@
       body {
         margin: 0;
         min-height: 100svh;
-        display: grid;
-        place-items: center;
         background:
           radial-gradient(circle at top, rgba(255, 255, 255, 0.92), rgba(251, 250, 247, 0.88) 46%, rgba(241, 236, 228, 0.88)),
           var(--paper);
@@ -30,10 +30,30 @@
         font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
       }
 
+      body.story-open {
+        display: grid;
+        place-items: center;
+      }
+
+      body:not(.story-open) {
+        overflow: hidden;
+      }
+
       main {
         width: min(100%, 680px);
         padding: 52px 24px 42px;
         text-align: center;
+        opacity: 0;
+        transform: translateY(12px);
+        visibility: hidden;
+        transition: opacity 800ms ease, transform 800ms ease, visibility 0s linear 800ms;
+      }
+
+      body.story-open main {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+        transition-delay: 0s;
       }
 
       .chapter {
@@ -103,9 +123,291 @@
         color: var(--muted);
         font-size: 12px;
       }
+
+      .golf-intro {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        border: 0;
+        background:
+          linear-gradient(180deg, rgba(248, 252, 247, 0.94) 0%, rgba(251, 250, 247, 0.98) 58%, rgba(233, 240, 226, 0.98) 100%),
+          var(--paper);
+        color: inherit;
+        cursor: pointer;
+        z-index: 10;
+        transition: opacity 700ms ease, visibility 0s linear 700ms;
+      }
+
+      .golf-intro.is-done {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .intro-inner {
+        display: block;
+        width: min(100%, 760px);
+      }
+
+      .intro-copy {
+        display: block;
+        margin: 0 0 22px;
+        color: var(--muted);
+        font-size: 14px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .course {
+        display: block;
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        min-height: 260px;
+        overflow: hidden;
+      }
+
+      .sky {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 17% 20%, rgba(255, 255, 255, 0.9) 0 7%, transparent 8%),
+          linear-gradient(180deg, #dff0f3 0%, #f8fbf3 70%);
+      }
+
+      .hill {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 4%;
+        height: 58%;
+        background: var(--green);
+        clip-path: polygon(0 76%, 9% 72%, 22% 65%, 37% 49%, 52% 36%, 68% 42%, 82% 58%, 100% 62%, 100% 100%, 0 100%);
+      }
+
+      .fairway {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 27%;
+        background: linear-gradient(180deg, #7fb978, #5f985c);
+      }
+
+      .hole {
+        position: absolute;
+        right: 10.5%;
+        bottom: 31%;
+        width: clamp(38px, 8vw, 62px);
+        height: clamp(12px, 2.3vw, 18px);
+        border-radius: 50%;
+        background: #172017;
+        box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.12), 0 8px 16px rgba(33, 56, 30, 0.18);
+      }
+
+      .flag {
+        position: absolute;
+        right: 13.7%;
+        bottom: 33%;
+        width: 2px;
+        height: clamp(58px, 12vw, 96px);
+        background: #566350;
+        transform-origin: bottom;
+      }
+
+      .flag::after {
+        content: "";
+        position: absolute;
+        top: 4px;
+        left: 0;
+        width: clamp(34px, 6.8vw, 52px);
+        height: clamp(20px, 4vw, 30px);
+        background: #c7654d;
+        clip-path: polygon(0 0, 100% 26%, 0 100%);
+      }
+
+      .ball {
+        position: absolute;
+        left: 16.2%;
+        bottom: 20%;
+        width: clamp(18px, 3.3vw, 30px);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 36% 30%, #ffffff 0 18%, #f4f4ef 19% 54%, #d7d7cf 100%);
+        box-shadow: 0 10px 12px rgba(34, 52, 31, 0.16);
+      }
+
+      .club {
+        position: absolute;
+        left: 10%;
+        bottom: 21.5%;
+        width: clamp(16px, 3vw, 24px);
+        height: clamp(134px, 24vw, 210px);
+        transform: rotate(-36deg);
+        transform-origin: 50% 92%;
+      }
+
+      .club::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 4px;
+        height: 90%;
+        border-radius: 99px;
+        background: linear-gradient(90deg, #565656, #a8a8a8, #4d4d4d);
+        transform: translateX(-50%);
+      }
+
+      .club::after {
+        content: "";
+        position: absolute;
+        left: 45%;
+        bottom: 0;
+        width: clamp(46px, 8vw, 70px);
+        height: clamp(16px, 3vw, 25px);
+        border-radius: 4px 14px 12px 4px;
+        background: linear-gradient(180deg, #434343, #171717);
+        transform: translateX(-12%) rotate(7deg);
+      }
+
+      .tap-label {
+        position: absolute;
+        left: 50%;
+        bottom: 8%;
+        transform: translateX(-50%);
+        margin: 0;
+        color: rgba(29, 29, 31, 0.72);
+        font-size: 16px;
+        line-height: 1.5;
+        white-space: nowrap;
+      }
+
+      .golf-intro.is-playing {
+        cursor: default;
+      }
+
+      .golf-intro.is-playing .tap-label {
+        opacity: 0;
+      }
+
+      .golf-intro.is-playing .club {
+        animation: swing 1.02s cubic-bezier(.32, .02, .18, 1) forwards;
+      }
+
+      .golf-intro.is-playing .ball {
+        animation: putt 2.6s 620ms cubic-bezier(.2, .6, .2, 1) forwards;
+      }
+
+      .golf-intro.is-playing .flag {
+        animation: flag-wiggle 420ms 2.45s ease-in-out;
+      }
+
+      @keyframes swing {
+        0% { transform: rotate(-36deg); }
+        35% { transform: rotate(-72deg); }
+        64% { transform: rotate(26deg); }
+        100% { transform: rotate(12deg); }
+      }
+
+      @keyframes putt {
+        0% { left: 16.2%; bottom: 20%; transform: scale(1); }
+        22% { left: 33%; bottom: 31%; transform: scale(.96); }
+        48% { left: 52%; bottom: 47%; transform: scale(.9); }
+        72% { left: 72%; bottom: 36%; transform: scale(.84); }
+        90% { left: 84%; bottom: 32%; transform: scale(.76); opacity: 1; }
+        100% { left: 86.5%; bottom: 29%; transform: scale(.28); opacity: 0; }
+      }
+
+      @keyframes flag-wiggle {
+        0%, 100% { transform: rotate(0deg); }
+        38% { transform: rotate(4deg); }
+        68% { transform: rotate(-3deg); }
+      }
+
+      @media (max-width: 560px) {
+        .golf-intro {
+          padding: 18px;
+        }
+
+        .course {
+          aspect-ratio: 10 / 13;
+          min-height: 440px;
+        }
+
+        .hill {
+          bottom: 9%;
+          height: 54%;
+          clip-path: polygon(0 76%, 9% 72%, 25% 62%, 43% 44%, 59% 36%, 75% 48%, 100% 58%, 100% 100%, 0 100%);
+        }
+
+        .fairway {
+          height: 30%;
+        }
+
+        .ball {
+          left: 12%;
+          bottom: 26%;
+        }
+
+        .club {
+          left: 2.5%;
+          bottom: 27.5%;
+        }
+
+        .hole {
+          right: 5%;
+          bottom: 35%;
+        }
+
+        .flag {
+          right: 11.5%;
+          bottom: 37%;
+        }
+
+        @keyframes putt {
+          0% { left: 12%; bottom: 26%; transform: scale(1); }
+          22% { left: 28%; bottom: 36%; transform: scale(.96); }
+          48% { left: 49%; bottom: 50%; transform: scale(.9); }
+          72% { left: 70%; bottom: 42%; transform: scale(.84); }
+          90% { left: 87%; bottom: 36%; transform: scale(.76); opacity: 1; }
+          100% { left: 90%; bottom: 34%; transform: scale(.28); opacity: 0; }
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        main,
+        .golf-intro {
+          transition: none;
+        }
+
+        .golf-intro.is-playing .club,
+        .golf-intro.is-playing .ball,
+        .golf-intro.is-playing .flag {
+          animation-duration: 1ms;
+        }
+      }
     </style>
   </head>
   <body>
+    <button class="golf-intro" type="button" aria-label="点击开始 Chapter 01">
+      <span class="intro-inner">
+        <span class="intro-copy">Chapter 01</span>
+        <span class="course" aria-hidden="true">
+          <span class="sky"></span>
+          <span class="hill"></span>
+          <span class="fairway"></span>
+          <span class="flag"></span>
+          <span class="hole"></span>
+          <span class="club"></span>
+          <span class="ball"></span>
+          <span class="tap-label">丹丹，轻点一下</span>
+        </span>
+      </span>
+    </button>
     <main>
       <p class="chapter">Chapter 01</p>
       <h1>相遇</h1>
@@ -122,5 +424,18 @@
       </audio>
       <p class="footer">Keke &amp; Dandan</p>
     </main>
+    <script>
+      const intro = document.querySelector(".golf-intro");
+
+      intro.addEventListener("click", () => {
+        if (intro.classList.contains("is-playing")) return;
+        intro.classList.add("is-playing");
+
+        window.setTimeout(() => {
+          document.body.classList.add("story-open");
+          intro.classList.add("is-done");
+        }, 3500);
+      });
+    </script>
   </body>
 </html>
