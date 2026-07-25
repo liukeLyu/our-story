@@ -202,7 +202,7 @@
       }
 
       .golf-intro.is-playing #club {
-        animation: swing 980ms cubic-bezier(.32, .02, .18, 1) forwards;
+        animation: swing 1280ms cubic-bezier(.32, .02, .18, 1) forwards;
       }
 
       #flag {
@@ -224,9 +224,11 @@
 
       @keyframes swing {
         0% { transform: rotate(-28deg); }
-        32% { transform: rotate(-64deg); }
-        66% { transform: rotate(22deg); }
-        100% { transform: rotate(10deg); }
+        18% { transform: rotate(-36deg); }
+        42% { transform: rotate(-66deg); }
+        58% { transform: rotate(19deg); }
+        76% { transform: rotate(6deg); }
+        100% { transform: rotate(12deg); }
       }
 
       @keyframes flag-wiggle {
@@ -390,7 +392,7 @@
           }
 
           requestAnimationFrame(roll);
-        }, 560);
+        }, 700);
 
         window.setTimeout(() => {
           document.body.classList.add("story-open");
