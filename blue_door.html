@@ -31,17 +31,23 @@
         padding: 42px 28px;
         display: grid;
         place-items: center;
-        gap: 28px;
+        gap: 30px;
         text-align: center;
       }
 
       img {
         display: block;
-        width: min(86vw, 560px);
+        width: min(78vw, 480px);
         height: auto;
       }
 
-      .riddle {
+      .clues {
+        display: grid;
+        gap: 20px;
+        place-items: center;
+      }
+
+      .clue {
         margin: 0;
         max-width: 18em;
         color: var(--muted);
@@ -50,15 +56,27 @@
         line-height: 1.85;
         letter-spacing: 0;
       }
+
+      .divider {
+        width: 46px;
+        height: 1px;
+        background: #c9d4cc;
+      }
     </style>
   </head>
   <body>
     <main>
+      <div class="clues">
+        <p class="clue">
+          先坐下喝杯咖啡，翻到《爱你就像爱生命》第 42 页。<br />
+          找到那颗高尔夫球。
+        </p>
+        <div class="divider" aria-hidden="true"></div>
+        <p class="clue">
+          重新出发，叶影落下的地方，蓝色会替你指路。
+        </p>
+      </div>
       <img src="generated/blue_gate_doodle_transparent.png" alt="" />
-      <p class="riddle">
-        先坐下喝杯咖啡，翻到《爱你就像爱生命》第 42 页。<br />
-        找到那颗高尔夫球，再让蓝色替你指路。
-      </p>
     </main>
   </body>
 </html>
